@@ -1,5 +1,43 @@
-<h1>hello world</h1>
-{{#each article}}
-    <h2><a href="{{link}}">{{title}}</a></h2>
-    <p>{{summary}}</p>
-{{/each}}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">NPR News Scraper</h1>
+        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    </div>
+</div>
+<div class="container">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                aria-controls="nav-home" aria-selected="true">Home</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                aria-controls="nav-profile" aria-selected="false">Profile</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                aria-controls="nav-contact" aria-selected="false">Contact</a>
+        </div>
+    </nav>
+    <div class="tab-content p-2 mb-5 border-right border-left border-bottom" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="card-columns m-4">
+                {{#each articles}}
+                <div class="card">
+                    <div class="card-header"><a href="{{link}}">{{title}}</a>
+                    </div>
+                    <img class="card-img-top" src="{{image}}" alt="{{title}}">
+
+                    <div class="card-body">
+                        {{!-- <h5 class="card-title">{{title}}</h5> --}}
+                        <p class="card-text">{{summary}}</p>
+                        <p class="card-text mb-0"><small class="text-muted">{{date}}</small></p>
+                        <a class="float-right" href="{{link}}"><i class="fas fa-external-link-alt"></i></a>
+
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+    </div>
+
+</div>

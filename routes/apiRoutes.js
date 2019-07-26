@@ -10,42 +10,7 @@ module.exports = function (app) {
         axios.get("https://www.npr.org/sections/news/").then(function (response) {
             // Then, we load that into cheerio and save it to $ for a shorthand selector
             var $ = cheerio.load(response.data);
-            // Now, we grab every h2 within an article tag, and do the following:
-            // $("article div .item-info").each(function (i, element) {
-            //     // Save an empty result object
-            //     var result = {};
-            //     // Add the text and href of every link, and save them as properties of the result object
-            //     result.title = $(this)
-            //         .children("h2")
-            //         .children("a")
-            //         .text();
-            //     result.link = $(this)
-            //         .children("h2")
-            //         .children("a")
-            //         .attr("href");
-            //     result.summary = $(this)
-            //         .children("p")
-            //         .children("a")
-            //         .text();
-            //     //   result.image = $(this)
-            //     //     .parent()
-            //     //     .parent()
-            //     //     .children("div .item-image")
-            //     //     .children("div .itemwrap")
-            //     //     .children("a")
-            //     //     .children("img")
-            //     //     .attr("src")
-
-            //     //   Create a new Article using the `result` object built from scraping
-            //     db.Article.create(result)
-            //         .then(function (dbArticle) {
-            //             // View the added result in the console
-            //             //   console.log(dbArticle);
-            //         })
-            //         .catch(function (err) {
-            //             // If an error occurred, log it
-            //             console.log(err);
-            //         });
+         
             $("article.item").each(function (i, element) {
                 var result = {};
 
