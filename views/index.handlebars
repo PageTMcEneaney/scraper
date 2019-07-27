@@ -7,37 +7,194 @@
 <div class="container">
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                aria-controls="nav-home" aria-selected="true">Home</a>
-            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                aria-controls="nav-profile" aria-selected="false">Profile</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                aria-controls="nav-contact" aria-selected="false">Contact</a>
+            <a class="nav-item nav-link active" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab"
+                aria-controls="nav-all" aria-selected="true">All</a>
+            <a class="nav-item nav-link" id="nav-business-tab" data-toggle="tab" href="#nav-business" role="tab"
+                aria-controls="nav-business" aria-selected="false">Business</a>
+            <a class="nav-item nav-link" id="nav-culture-tab" data-toggle="tab" href="#nav-culture" role="tab"
+                aria-controls="nav-culture" aria-selected="false">Culture</a>
+            <a class="nav-item nav-link" id="nav-health-tab" data-toggle="tab" href="#nav-health" role="tab"
+                aria-controls="nav-health" aria-selected="false">Health</a>
+            {{!-- <a class="nav-item nav-link" id="nav-national-tab" data-toggle="tab" href="#nav-national" role="tab"
+                aria-controls="nav-national" aria-selected="false">National</a> --}}
+            <a class="nav-item nav-link" id="nav-politics-tab" data-toggle="tab" href="#nav-politics" role="tab"
+                aria-controls="nav-politics" aria-selected="false">Politics</a>
+            <a class="nav-item nav-link" id="nav-science-tab" data-toggle="tab" href="#nav-science" role="tab"
+                aria-controls="nav-science" aria-selected="false">Science</a>
+            <a class="nav-item nav-link" id="nav-technology-tab" data-toggle="tab" href="#nav-technology" role="tab"
+                aria-controls="nav-technology" aria-selected="false">Technology</a>
+            <a class="nav-item nav-link" id="nav-world-tab" data-toggle="tab" href="#nav-world" role="tab"
+                aria-controls="nav-world" aria-selected="false">World</a>
         </div>
     </nav>
     <div class="tab-content p-2 mb-5 border-right border-left border-bottom" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
             <div class="card-columns m-4">
-                {{#each articles}}
+                {{#each news.news}}
                 <div class="card">
                     <div class="card-header"><a href="{{link}}">{{title}}</a>
                     </div>
                     <img class="card-img-top" src="{{image}}" alt="{{title}}">
-
                     <div class="card-body">
-                        {{!-- <h5 class="card-title">{{title}}</h5> --}}
+                        <h5 class="card-title">{{title}}</h5>
                         <p class="card-text">{{summary}}</p>
                         <p class="card-text mb-0"><small class="text-muted">{{date}}</small></p>
                         <a class="float-right" href="{{link}}"><i class="fas fa-external-link-alt"></i></a>
-
                     </div>
                 </div>
                 {{/each}}
             </div>
-
         </div>
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+        <div class="tab-pane fade" id="nav-business" role="tabpanel" aria-labelledby="nav-business-tab">
+            <div class="card-columns m-4">
+                {{#each business.business}}
+                <div class="card">
+                    <div class="card-header"><a href="{{link}}">{{title}}</a>
+                    </div>
+                    <img class="card-img-top" src="{{image}}" alt="{{title}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}}</h5>
+                        <p class="card-text">{{summary}}</p>
+                        <p class="card-text mb-0"><small class="text-muted">{{date}}</small></p>
+                        <a class="float-right" href="{{link}}"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-culture" role="tabpanel" aria-labelledby="nav-culture-tab">
+            <div class="card-columns m-4">
+                {{#each codeswitch.codeswitch}}
+                <div class="card">
+                    <div class="card-header"><a href="{{link}}">{{title}}</a>
+                    </div>
+                    <img class="card-img-top" src="{{image}}" alt="{{title}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}}</h5>
+                        <p class="card-text">{{summary}}</p>
+                        <p class="card-text mb-0"><small class="text-muted">{{date}}</small></p>
+                        <a class="float-right" href="{{link}}"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-health" role="tabpanel" aria-labelledby="nav-health-tab">
+            <div class="card-columns m-4">
+                {{#each health.health}}
+                <div class="card">
+                    <div class="card-header"><a href="{{link}}">{{title}}</a>
+                    </div>
+                    <img class="card-img-top" src="{{image}}" alt="{{title}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}}</h5>
+                        <p class="card-text">{{summary}}</p>
+                        <p class="card-text mb-0"><small class="text-muted">{{date}}</small></p>
+                        <a class="float-right" href="{{link}}"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{!-- <div class="tab-pane fade" id="nav-national" role="tabpanel" aria-labelledby="nav-national-tab">
+            <div class="card-columns m-4">
+                {{#each national}}
+                <div class="card">
+                    <div class="card-header"><a href="{{link}}">{{title}}</a>
+                    </div>
+                    <img class="card-img-top" src="{{image}}" alt="{{title}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}}</h5>
+                        <p class="card-text">{{summary}}</p>
+                        <p class="card-text mb-0"><small class="text-muted">{{date}}</small></p>
+                        <a class="float-right" href="{{link}}"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div> --}}
+        <div class="tab-pane fade" id="nav-politics" role="tabpanel" aria-labelledby="nav-politics-tab">
+            <div class="card-columns m-4">
+                {{#each politics.politics}}
+                <div class="card">
+                    <div class="card-header"><a href="{{link}}">{{title}}</a>
+                    </div>
+                    <img class="card-img-top" src="{{image}}" alt="{{title}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}}</h5>
+                        <p class="card-text">{{summary}}</p>
+                        <p class="card-text mb-0"><small class="text-muted">{{date}}</small></p>
+                        <a class="float-right" href="{{link}}"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-science" role="tabpanel" aria-labelledby="nav-science-tab">
+            <div class="card-columns m-4">
+                {{#each science.science}}
+                <div class="card">
+                    <div class="card-header"><a href="{{link}}">{{title}}</a>
+                    </div>
+                    <img class="card-img-top" src="{{image}}" alt="{{title}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}}</h5>
+                        <p class="card-text">{{summary}}</p>
+                        <p class="card-text mb-0"><small class="text-muted">{{date}}</small></p>
+                        <a class="float-right" href="{{link}}"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-technology" role="tabpanel" aria-labelledby="nav-technology-tab">
+            <div class="card-columns m-4">
+                {{#each technology.technology}}
+                <div class="card">
+                    <div class="card-header"><a href="{{link}}">{{title}}</a>
+                    </div>
+                    <img class="card-img-top" src="{{image}}" alt="{{title}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}}</h5>
+                        <p class="card-text">{{summary}}</p>
+                        <p class="card-text mb-0"><small class="text-muted">{{date}}</small></p>
+                        <a class="float-right" href="{{link}}"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-world" role="tabpanel" aria-labelledby="nav-world-tab"><div class="card-columns m-4">
+                {{#each world.world}}
+                <div class="card">
+                    <div class="card-header"><a href="{{link}}">{{title}}</a>
+                    </div>
+                    <img class="card-img-top" src="{{image}}" alt="{{title}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}}</h5>
+                        <p class="card-text">{{summary}}</p>
+                        <p class="card-text mb-0"><small class="text-muted">{{date}}</small></p>
+                        <a class="float-right" href="{{link}}"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+            </div></div>
     </div>
 
 </div>
+
+{{!-- <div class="card-columns m-4">
+    {{#each world}}
+    <div class="card">
+        <div class="card-header"><a href="{{link}}">{{title}}</a>
+        </div>
+        <img class="card-img-top" src="{{image}}" alt="{{title}}">
+        <div class="card-body">
+            {{!-- <h5 class="card-title">{{title}}</h5> --}}
+{{!-- <p class="card-text">{{summary}}</p>
+            <p class="card-text mb-0"><small class="text-muted">{{date}}</small></p>
+            <a class="float-right" href="{{link}}"><i class="fas fa-external-link-alt"></i></a>
+        </div>
+    </div>
+    {{/each}}
+</div> --}}

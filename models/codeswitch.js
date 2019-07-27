@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-var HealthSchema = new Schema({
+var CodeswitchSchema = new Schema({
   title: {
     type: String,
     required: true
@@ -34,6 +34,6 @@ var HealthSchema = new Schema({
   }
 });
 
-var Health = mongoose.model("Health", HealthSchema);
+var Codeswitch = mongoose.model("Codeswitch", CodeswitchSchema);
 
-module.exports = Health;
+module.exports = Codeswitch;

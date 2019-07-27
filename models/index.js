@@ -1,9 +1,15 @@
 // Exporting an object containing all of our models
 
 module.exports = {
-    Article: require("./Article"),
     Business: require("./Business"),
-    Culture: require("./Culture"),
-    Note: require("./Note")
+    Codeswitch: require("./Codeswitch"),
+    Health: require("./Health"),
+    // National: require("./National"),
+    News: require("./News"),
+    Note: require("./Note"),
+    Politics: require ("./Politics"),
+    Science: require ("./Science"),
+    Technology: require("./Technology"),
+    World: require ("./World")
   };
   

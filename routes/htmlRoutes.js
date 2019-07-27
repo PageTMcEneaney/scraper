@@ -2,56 +2,86 @@
 // var request = require("request");
 var db = require("../models");
 
-module.exports = function(app) {
-    app.get("/", function(req, res) {
-        var headlineObject = {}
+var findArticles = function (found, headline) {
+    var headlineObject = {};
+    headlineObject[headline] = [];
+    if (found.length > 0) {
+        for (let i = 0; i < found.length; i++) {
+            newObject = {
+                id: found[i]._id,
+                title: found[i].title,
+                summary: found[i].summary,
+                link: found[i].link,
+                image: found[i].image,
+                date: found[i].date,
+                saved: found[i].saved,
+                notes: found[i].notes
+            };
+            headlineObject[headline].push(newObject);
+        };
+    };
+    return headlineObject;
+};
 
-        headlineObject["articles"] = []
+module.exports = function (app) {
+    app.get("/", function (req, res) {
+        var allArticles = {}
+        db.News.find({ $query: { saved: false } }).sort({ date: -1 })
+            .then(function (found) {
+                var news = findArticles(found, "news")
+                allArticles.news = news;
 
-        db.Article.find({$query: {saved: false} }).sort( { date: -1 })
-        .then(function(found) {
-            if (found.length > 0) {
-                for (let i = 0; i < found.length; i ++ ) {
+                db.Business.find({ $query: { saved: false } }).sort({ date: -1 })
+                    .then(function (found) {
+                        var business = findArticles(found, "business")
+                        allArticles.business = business;
 
-                    console.log(found[i]);
+                        db.Codeswitch.find({ $query: { saved: false } }).sort({ date: -1 })
+                            .then(function (found) {
+                                var codeswitch = findArticles(found, "codeswitch")
+                                allArticles.codeswitch = codeswitch;
 
-                    newObject = {
-                        id: found[i]._id,
-                        title: found[i].title,
-                        summary: found[i].summary,
-                        link: found[i].link,
-                        image: found[i].image,
-                        date: found[i].date,
-                        saved: found[i].saved,
-                        notes: found[i].notes
-                    }
+                                db.Health.find({ $query: { saved: false } }).sort({ date: -1 })
+                                    .then(function (found) {
+                                        var health = findArticles(found, "health")
+                                        allArticles.health = health;
 
-                    headlineObject.articles.push(newObject);
+                                        db.Politics.find({ $query: { saved: false } }).sort({ date: -1 })
+                                            .then(function (found) {
+                                                var politics = findArticles(found, "politics")
+                                                allArticles.politics = politics;
 
-                    if (i == (found.length - 1)) {
-                        // res.json(headlineObject)
+                                                db.Science.find({ $query: { saved: false } }).sort({ date: -1 })
+                                                    .then(function (found) {
+                                                        var science = findArticles(found, "science")
+                                                        allArticles.science = science;
 
-                        res.render("index", headlineObject)
-                    }
-                }
-            }
+                                                        db.Technology.find({ $query: { saved: false } }).sort({ date: -1 })
+                                                            .then(function (found) {
+                                                                var technology = findArticles(found, "technology")
+                                                                allArticles.technology = technology;
 
-            else {
-                res.render("index")
-            }
+                                                                db.World.find({ $query: { saved: false } }).sort({ date: -1 })
+                                                                    .then(function (found) {
+                                                                        var world = findArticles(found, "world")
+                                                                        allArticles.world = world;
 
-        });
+                                                                        render(allArticles);
+                                                                    });
+                                                            });
+                                                    });
+                                            });
+                                    });
+                            });
+                    });
+            });
 
-
-        // res.render("index")
-        // res.render("index", {
-        //     title: result.title,
-        //     link: result.link,
-        //     summary: result.summary
-        // })
+        var render = function (all) {
+            res.render("index", all)
+        }
     });
 
-    app.get("/saved", function(req, res) {
+    app.get("/saved", function (req, res) {
         //
     })
 };
