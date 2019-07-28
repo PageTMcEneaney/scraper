@@ -42,85 +42,14 @@ var axiosCall = function (category) {
                 .find('a')
                 .find('time')
                 .attr("datetime");
-
-            // console.log(result);
-            switch (category) {
-                case "business":
-                db.Business.create(result)
-                .then(function (article) {
-                    console.log(article);
-                }).catch(function (err) {
-                    console.log(err);
-                });
-                break;
-                case "codeswitch":
-                db.Codeswitch.create(result)
-                .then(function (article) {
-                    console.log(article);
-                }).catch(function (err) {
-                    console.log(err);
-                });
-                break;
-                case "health":
-                db.Health.create(result)
-                .then(function (article) {
-                    console.log(article);
-                }).catch(function (err) {
-                    console.log(err);
-                });
-                break;
-                // case "National":
-                // db.National.create(result)
-                // .then(function (article) {
-                //     console.log(article);
-                // }).catch(function (err) {
-                //     console.log(err);
-                // });
-                // break;
-                case "news":
-                db.News.create(result)
-                .then(function (article) {
-                    console.log(article);
-                }).catch(function (err) {
-                    console.log(err);
-                });
-                break;
-                case "politics":
-                db.Politics.create(result)
-                .then(function (article) {
-                    console.log(article);
-                }).catch(function (err) {
-                    console.log(err);
-                });
-                break;
-                case "science":
-                db.Science.create(result)
-                .then(function (article) {
-                    console.log(article);
-                }).catch(function (err) {
-                    console.log(err);
-                });
-                break;
-                case "technology":
-                db.Technology.create(result)
-                .then(function (article) {
-                    console.log(article);
-                }).catch(function (err) {
-                    console.log(err);
-                });
-                break;
-                case "world":
-                db.World.create(result)
-                .then(function (article) {
-                    console.log(article);
-                }).catch(function (err) {
-                    console.log(err);
-                });
-                break;
-                default:
-                    console.log("oops! something went wrong")
-                break;    
-            };        
+            result[category] = true;  
+            
+            db.Article.create(result)
+            .then(function (article) {
+                console.log(article);
+            }).catch(function(err) {
+                console.log(err);
+            })
         });
     });
 }

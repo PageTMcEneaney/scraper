@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
-var NewsSchema = new Schema({
+var ArticleSchema = new Schema({
   // `title` is required and of type String
   title: {
     type: String,
@@ -34,6 +34,40 @@ var NewsSchema = new Schema({
       default: false
   },
 
+  //checking for category type
+  business: {
+      type: Boolean,
+      default: false
+  },
+  codeswitch: {
+    type: Boolean,
+    default: false
+  },
+  health: {
+    type: Boolean,
+    default: false
+  },
+  news: {
+    type: Boolean,
+    default: false
+  },
+  politics: {
+    type: Boolean,
+    default: false
+  },
+  science: {
+    type: Boolean,
+    default: false
+  },
+  technology: {
+    type: Boolean,
+    default: false
+  },
+  world: {
+    type: Boolean,
+    default: false
+  },
+
   // `note` is an object that stores a Note id
   // The ref property links the ObjectId to the Note model
   // This allows us to populate the Article with an associated Note
@@ -44,7 +78,7 @@ var NewsSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var News = mongoose.model("News", NewsSchema);
+var Article = mongoose.model("Article", ArticleSchema);
 
 // Export the Article model
-module.exports = News;
+module.exports = Article;
