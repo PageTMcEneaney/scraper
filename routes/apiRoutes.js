@@ -58,30 +58,99 @@ module.exports = function (app) {
     // A GET route for scraping the npr news   website
     app.get("/scrape/:category", function (req, res) {
         axiosCall(req.params.category);
-        res.send("scrape complete");
+        console.log(req.params.category);
+        // res.redirect("/");
+        // res.ren("index");
+        res.json()
+
     });
 
-    // Route for getting all Articles from the db
-    app.get("/api/all", function (req, res) {
-        // TODO: Finish the route so it grabs all of the articles
+    app.post("/save/:id", function (req, res) {
+        // console.log("saved!", req.params.id)
+        db.Article.updateOne({
+            "_id": req.params.id
+        },{
+            $set: { "saved": true }
+        }).then(function(found) {
+            // console.log(found);
+            res.json(found);
+        });
+    });
+    app.post("/unsave/:id", function (req, res) {
+        // console.log("unsaved!", req.params.id)
+        db.Article.updateOne({
+            "_id": req.params.id
+        },{
+            $set: { "saved": false }
+        }).then(function(found) {
+            // console.log(found);
+            res.json(found);
+        });
     });
 
-    // Route for grabbing a specific Article by id, populate it with it's note
-    app.get("/articles/:id", function (req, res) {
-        // TODO
-        // ====
-        // Finish the route so it finds one article using the req.params.id,
-        // and run the populate method with "note",
-        // then responds with the article with the note included
+    app.get("/api/clear/:category", (req, res) => {
+        var clear = req.params.category + ": true";
+        console.log(clear);
+        // db.Article.drop();
+        db.Article.remove({ 
+            news: true
+        }).then(function () {
+            res.json("documents removed from article collection");
+        })
     });
 
-    // Route for saving/updating an Article's associated Note
-    app.post("/articles/:id", function (req, res) {
-        // TODO
-        // ====
-        // save the new note that gets posted to the Notes collection
-        // then find an article from the req.params.id
-        // and update it's "note" property with the _id of the new note
+    app.get("/api/notes/all", function (req, res) {
+
+        db.Note.find({})
+            .then(function (response) {
+                res.json(response)
+                // res.json(response)
+            })
+    });
+    app.get("/api/articles/all", function (req, res) {
+
+        db.Article.find({})
+            .then(function (response) {
+                res.json(response)
+                // res.json(response)
+            })
+    });
+
+    app.get("/api/populate", function (req, res) {
+
+        db.Article.find({ _id: "5d3d0c753e624aa0f4ebf808" })
+        .populate("note")
+        .then(function(dbLibrary) {
+            // If any Libraries are found, send them to the client with any associated Books
+            res.json(dbLibrary);
+          })
+          .catch(function(err) {
+            // If an error occurs, send it back to the client
+            res.json(err);
+          });
+    });
+
+    app.post("/api/create/note/:id", function (req, res){
+        console.log(req.body);
+
+        db.Note.create(req.body)
+            .then(function (dbNote) {
+                console.log("dbNote", dbNote)
+                return db.Article.findOneAndUpdate({
+                    _id: req.params.id
+                }, {
+                    noteId: dbNote
+                }, {
+                    new: true
+                });
+            })
+            .then(function (result) {
+                res.json(result);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+
     });
 
 };

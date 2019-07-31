@@ -14,7 +14,7 @@ var findArticles = function (found) {
                 image: found[i].image,
                 date: found[i].date,
                 saved: found[i].saved,
-                notes: found[i].notes,
+                // noteId: "test",
                 business: found[i].business,
                 codeswitch: found[i].codeswitch,
                 health: found[i].health,
@@ -47,6 +47,22 @@ module.exports = function (app) {
     });
 
     app.get("/saved", function (req, res) {
+        var allArticles = {};
+        var allNotes = {};
 
+        db.Article.find({ $query: { saved: true } }).sort({ date: -1 })
+        .then(function (found) {
+            var article = findArticles(found)
+            allArticles.all = article;
+            // db.Note.find({ $query: { "_id":  } }).sort({ date: -1 })
+            // .then(function (found) {)
+            render(allArticles);
+        });
+
+        var render = function (all) {
+            console.log(all);
+
+            res.render("saved", all)
+        };
     })
 };
